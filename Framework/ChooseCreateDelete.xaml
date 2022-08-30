@@ -1,0 +1,463 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ChooseCreateDelete" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.Collections;assembly=mscorlib" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="dtQueues" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="dictQueue" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="queueName" Type="InOutArgument(x:String)" />
+    <x:Property Name="queueDef" Type="OutArgument(x:String)" />
+    <x:Property Name="createQueueStatus" Type="OutArgument(x:Int32)" />
+    <x:Property Name="emptyQueueChosen" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="queueId" Type="OutArgument(x:String)" />
+    <x:Property Name="existingList" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="emptyList" Type="InArgument(scg:List(x:String))" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>1033.33333333333,931.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="66">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="35">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap:VirtualizedContainerService.HintSize="1043.33333333333,866.666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" Name="formResponse" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="keys">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">dictQueue.Keys.ToList()</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="njl:JObject" Name="jsonFormResponse" />
+      <Variable x:TypeArguments="njl:JToken" Name="jChoice" />
+      <Variable x:TypeArguments="njl:JToken" Name="jExisting" />
+      <Variable x:TypeArguments="njl:JToken" Name="jOption" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">300,77.1666666666667 300,107.166666666667 270,107.166666666667 270,124.666666666667</av:PointCollection>
+        <x:Double x:Key="Width">1009.1273179831854</x:Double>
+        <x:Double x:Key="Height">830.90500534226453</x:Double>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID3</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">151,124.666666666667</av:Point>
+          <av:Size x:Key="ShapeSize">238,210</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">270,334.666666666667 270,384</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" IconPath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="48920cb3-0815-404a-8531-c9667b71b79e" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form" FormHeight="539" FormSchema="%[{&quot;html&quot;:&quot;&lt;figure class=\&quot;image image-style-align-right image_resized\&quot; style=\&quot;margin-top:-35px;margin-right:-25px;\&quot;&gt;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAVeSURBVGhDzZp5yGZjGMZf+26MZM+esSWyJ2QvWRqMqEHJH7ZQZAnZ/iBZS9YkW9bGoBlrWcouu5ItlEiy7/vvOjxv19xzn+2d95vmql+Z79znPu85z3me57rvYzCB2hjO+58L4FSYBtvCUrBAaB04G46t/jWnboZ/avgAZsFRsAbMd+0M18OvoB90JLiWhi8g/vCMb+BK2AYmXFPgVvAf8CksBq6p4DFd+BOugZVhQnQ86GnFC18FUfdBjOvKZzAdxiZNuFsgu5iIQ78qfAdZbB+yB9Nb68M7kF1AvAhRJ0IWOwrPwAowktaGdyFLXDgJop6ALHZUnoLloZeWg/chS1j4GXSTrk0gi51XnoZemgFZIudJiDoXsthx0HlOnA5Zgkhc+6W2UZtXDoJGbQhlc2pCq8yK4NLmlsWOky9hMtTqEchOjNwIUXdCFjturoZUu0B2Qsbe4Cp7xWMwGx6AZ+F7yM4Xshr3g+Iz5JUehPha/gVx8aikZB5Yx8cQrcPCsMh//znUorA63A1ZnuOgiybBwfADlHMvgTm0AejO/AJ1zHVyB70EnuNb6Lu2Hw3l/K9BNzbU+eAXaGJrcC0Ju8FOsAdsBVGqCTyHDGGUdv3dQa+y8q0ErlXAcxwKQz0PfrCOFyBKnt5jroWou8Bj9gGX7Pcn4DGqNVw7gB+/FyrJfGlI/WAd2iOitNV7zK7gkj3+Ccpx2e9lwbU/eI5HIeoK8JgPYXGohs0P1PELrAsuWQefO6/BQuA6GTyPipeoe8BjVE+4tMrJZnuMrrsZVOWgH6gjeyoXgcecBlHPgcdE+6133VeYz2EZcMURKujvgwvtD00cBi496Wi1NRFdquD+hnL8dYjL7eHgOTLPcxt4TOEEaCy+C19B9OU7gsdoF486CzzmDIh6GDxGk9Wl1edH8JiCHn4nC6BVJErvssccA1E+Qn+ARsSl/ed3KDFvQ5TyluMRud9ONxCXPb2jMlbluDaWaLK0J3iObA5F+91lDjnVDbS9Qlr2ZAtch4DH3AFR2g885ghwaQ69AeW4uhLZCP0GnsepXqG2SayuWlTsOuwJLtkErSbluLoZcQ6pQ+c5VIpGtdUm1SRuW0a3BNdqEDemJcC1L3iObA5dBh4Tu3saoTfBYyIHwGAv+0PkVYhyUyXUjIqKJWnbxqQCSQ/GJW/lOSJanquHuybULVNnQlT0TduDS9bE88l+x7Vf9thz3A5RcQ5FlHc48jJpWVDcmGQdfNl7BaL0XnqOS8GlV0P9JI/ZD1xyuHo1PSai+mUoTdQYoKoqKsZVkyhIzSiP2QJcugG9u9rZhVrucYS0bHuODL3KQ8kUxQANc5RPKk1kVVyu9cBzvAWq1vpqJnieiErVuZrAD0EJ0ASTR3fJJnuSbIQuBo+RlegjLbXRIGakPSJvi2iXlcUtBbaeiD5KeBIV21ptSoxuyF2l7K7aNC6NkAr1x6Gc5+d/BH6NOjaFVEqcnTAKMmlR4+jc3QS12hy0pWcn9kU22aWJKjudxXZFO3rrB5BzIDu5D9qYZINd20EW24fop2oVPXpfMutwHWSxXbkBOkt9z7aNpImq1DPJzcaatg/q8kVH3CoV8O9BlrCJrHN3IGSxXVDXQ98rRtJGoPZFlriOyyEqftnsyssw8iemIrXw6vqbGZqsLpk7t99dkZmr+j7jkpxp27cDVVhR+jybxdahTbTzatNX2ieauthZ10Hft7LYiPYflbdp63zc0vcBNQNiRzv2M2UlmmpaodpBRdF8+V8NovQDTwHVBZonUaoFsh+tJVo1sOz4WrBASD4/Sru6usiqf/V6yV7I1TZ+5+quweBfV7S3n2Ar7I8AAAAASUVORK5CYII=\&quot;&gt;&lt;/figure&gt;&quot;,&quot;label&quot;:&quot;Content&quot;,&quot;customClass&quot;:&quot;styledimg&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;content&quot;,&quot;type&quot;:&quot;content&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false},{&quot;tag&quot;:&quot;h2&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong&gt;Manage Queues&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;label&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;components&quot;:[{&quot;label&quot;:&quot;CHOOSE EXISTING QUEUE&quot;,&quot;key&quot;:&quot;chooseExistingQueue&quot;,&quot;components&quot;:[{&quot;collapsible&quot;:false,&quot;hideLabel&quot;:true,&quot;key&quot;:&quot;panel3&quot;,&quot;type&quot;:&quot;panel&quot;,&quot;label&quot;:&quot;Panel&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;components&quot;:[{&quot;tag&quot;:&quot;h4&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong&gt;Choose Existing Queue&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;label1&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;&lt;strong&gt;Choose An Existing Queue To Complete: &lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;Queues which were previously initialized that need to be completed.&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:{&quot;existing&quot;:false},&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;existing&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;key&quot;:&quot;existing&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;input&quot;:true,&quot;inputType&quot;:&quot;checkbox&quot;}]}]},{&quot;label&quot;:&quot;CHOOSE EMPTY QUEUE&quot;,&quot;key&quot;:&quot;chooseEmptyQueue&quot;,&quot;components&quot;:[{&quot;collapsible&quot;:false,&quot;hideLabel&quot;:true,&quot;key&quot;:&quot;panel&quot;,&quot;type&quot;:&quot;panel&quot;,&quot;label&quot;:&quot;Panel&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;components&quot;:[{&quot;tag&quot;:&quot;h4&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong&gt;Choose Empty Queue&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;label4&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;&lt;strong&gt;Available Empty Queues:&lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;Select one queue, or create a new queue by inputing the name and description below.&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:{&quot;&lt;font face=&quot;:true,&quot;&quot;:false,&quot;value&quot;:false,&quot;fontFaceFormaDjrDisplayResetFont&quot;:false,&quot;fontFaceFormaDjrDisplayFont&quot;:false,&quot;fontFaceFormaDjrDisplayDatFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoicFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoiceFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoiceFontDataHeaderFont&quot;:false,&quot;choice&quot;:false,&quot;row.NumItems&quot;:false,&quot;row.Name&quot;:false,&quot;rowDescription&quot;:false,&quot;&lt;table&gt;&lt;td&gt;choice&lt;/td&gt;&lt;/table&gt;&quot;:false},&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;&lt;table&gt;&lt;td&gt;choice&lt;/td&gt;&lt;/table&gt;&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;minSelectedCountMessage&quot;:&quot;You must select at least one region&quot;,&quot;key&quot;:&quot;choice&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;value&quot;:true,&quot;shortcut&quot;:&quot;A&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;input&quot;:true}]}]},{&quot;label&quot;:&quot;CREATE QUEUE&quot;,&quot;key&quot;:&quot;createQueue&quot;,&quot;components&quot;:[{&quot;collapsible&quot;:false,&quot;hideLabel&quot;:true,&quot;key&quot;:&quot;panel1&quot;,&quot;type&quot;:&quot;panel&quot;,&quot;label&quot;:&quot;Panel&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;components&quot;:[{&quot;tag&quot;:&quot;h4&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;Create New Queue&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;parameters_header&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Choose Regions&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong&gt;Input Name and Description:&lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;Select one queue, or create a new queue by inputing the name and description below.&quot;,&quot;key&quot;:&quot;label2&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;Name&quot;,&quot;placeholder&quot;:&quot;Name&quot;,&quot;hideLabel&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;name&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Description&quot;,&quot;placeholder&quot;:&quot;Description&quot;,&quot;hideLabel&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;description&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true}]}]},{&quot;label&quot;:&quot;DELETE QUEUES&quot;,&quot;key&quot;:&quot;deleteQueues&quot;,&quot;components&quot;:[{&quot;collapsible&quot;:false,&quot;hideLabel&quot;:true,&quot;key&quot;:&quot;panel2&quot;,&quot;type&quot;:&quot;panel&quot;,&quot;label&quot;:&quot;Panel&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;components&quot;:[{&quot;tag&quot;:&quot;h4&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong&gt;Delete Queues&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;label3&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;&lt;strong&gt;Choose Queues To Delete:&lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;Check the boxes of queues which you want to delete. This action cannot be undone!&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:{&quot;choice&quot;:false},&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;choice&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;key&quot;:&quot;option&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;input&quot;:true,&quot;inputType&quot;:&quot;checkbox&quot;}]}]}],&quot;key&quot;:&quot;tabs&quot;,&quot;type&quot;:&quot;tabs&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Tabs&quot;},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;center&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:2,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;SUBMIT&lt;/strong&gt;&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;saveOnEnter&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;RESET  &lt;/strong&gt;&quot;,&quot;action&quot;:&quot;reset&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;resetAll&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]}]]}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100200&quot;,&quot;Name&quot;:&quot;Paper&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/paper.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/paper.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="Select Region" FormWidth="786" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="238,210" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False" LocalCSSFilePath="/file://C:\Users\RimelSte\Documents\UiPath\CReST3\form1.css" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" StartAsMinimized="False">
+        <ufa:FormActivity.Body>
+          <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,84" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Sequence>
+          </ActivityAction>
+        </ufa:FormActivity.Body>
+        <ufa:FormActivity.DelayBody>
+          <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+            <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_1" />
+          </ActivityAction>
+        </ufa:FormActivity.DelayBody>
+        <ufa:FormActivity.FormFieldsCollection>
+          <InOutArgument x:TypeArguments="x:String" x:Key="choice" />
+          <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="choice_selectboxes">
+            <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">emptyList</mca:CSharpReference>
+          </InOutArgument>
+          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="items">
+            <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">dtQueues</mca:CSharpReference>
+          </InOutArgument>
+          <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="option_selectboxes">
+            <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">keys</mca:CSharpReference>
+          </InOutArgument>
+          <InOutArgument x:TypeArguments="x:String" x:Key="option" />
+          <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="existing_selectboxes">
+            <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">existingList</mca:CSharpReference>
+          </InOutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="existing" />
+        </ufa:FormActivity.FormFieldsCollection>
+        <ufa:FormActivity.FormFieldsOutputData>
+          <OutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">formResponse</mca:CSharpReference>
+          </OutArgument>
+        </ufa:FormActivity.FormFieldsOutputData>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ufa:FormActivity>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">170,384</av:Point>
+              <av:Size x:Key="ShapeSize">200,52</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">270,436 260,436 260,466</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2">
+            <ui:DeserializeJson.JsonObject>
+              <OutArgument x:TypeArguments="njl:JObject">
+                <mca:CSharpReference x:TypeArguments="njl:JObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">jsonFormResponse</mca:CSharpReference>
+              </OutArgument>
+            </ui:DeserializeJson.JsonObject>
+            <ui:DeserializeJson.JsonString>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">formResponse</mca:CSharpValue>
+              </InArgument>
+            </ui:DeserializeJson.JsonString>
+          </ui:DeserializeJson>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">160,466</av:Point>
+                  <av:Size x:Key="ShapeSize">200,68</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">260,534 260,564 140,564 140,684 260,684 260,666</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Assign jTokens" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="Assign Empty Queue JSON" sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="njl:JToken">
+                      <mca:CSharpReference x:TypeArguments="njl:JToken" sap2010:WorkflowViewState.IdRef="CSharpReference`1_16">jChoice</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="njl:JToken">
+                      <mca:CSharpValue x:TypeArguments="njl:JToken" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">jsonFormResponse["choice"]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="Assign Pre-Populated Queue JSON" sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="njl:JToken">
+                      <mca:CSharpReference x:TypeArguments="njl:JToken" sap2010:WorkflowViewState.IdRef="CSharpReference`1_17">jExisting</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="njl:JToken">
+                      <mca:CSharpValue x:TypeArguments="njl:JToken" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">jsonFormResponse["existing"]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:Annotation.AnnotationText="jToken of queues to be deleted" sap:VirtualizedContainerService.HintSize="262,92" sap2010:WorkflowViewState.IdRef="Assign_7">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="njl:JToken">
+                      <mca:CSharpReference x:TypeArguments="njl:JToken" sap2010:WorkflowViewState.IdRef="CSharpReference`1_18">jOption</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="njl:JToken">
+                      <mca:CSharpValue x:TypeArguments="njl:JToken" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">jsonFormResponse["option"]</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+              </Sequence>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">160,614</av:Point>
+                      <av:Size x:Key="ShapeSize">200,52</av:Size>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If DisplayName="If Queue Chosen For Deletion" sap:VirtualizedContainerService.HintSize="1340.66666666667,1390" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">jOption.Type != JTokenType.Null</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Delete Queue Sequence" sap:VirtualizedContainerService.HintSize="918.666666666667,1228" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="deleteDict" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="876.666666666667,392" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                          <TryCatch.Try>
+                            <Assign sap2010:Annotation.AnnotationText="Lambda to select every keyvaluepair from the user input JSON response from the Delete Queue Tab. Converts it to a Dictionary of &lt;string, string&gt; of the queueName where the value is true" sap:VirtualizedContainerService.HintSize="262,157.333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                                  <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_19">deleteDict</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                                  <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21" xml:space="preserve">jsonFormResponse["option"].ToObject&lt;Dictionary&lt;string, string&gt;&gt;()
+		.Where(p =&gt; p.Value == "True")
+	         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value)</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <Sequence sap:VirtualizedContainerService.HintSize="376,278" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,84.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_1">
+                                    <ui:MessageBox.Text>
+                                      <InArgument x:TypeArguments="x:Object">
+                                        <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">"catch "</mca:CSharpValue>
+                                      </InArgument>
+                                    </ui:MessageBox.Text>
+                                  </ui:MessageBox>
+                                  <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Boolean">
+                                        <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_10">noDeletions</mca:CSharpReference>
+                                      </OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Sequence>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                        <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="876.666666666667,744" sap2010:WorkflowViewState.IdRef="ForEach`1_2">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:String)">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:String)" Name="item" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="840,617.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="x:String" Name="requestBody" />
+                                  <Variable x:TypeArguments="x:Int32" Name="deleteStatus" />
+                                  <Variable x:TypeArguments="x:String" Name="deleteResponse" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="798,84.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_2">
+                                  <ui:MessageBox.Text>
+                                    <InArgument x:TypeArguments="x:Object">
+                                      <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">"delete: "+item.Key+": "+item.Value</mca:CSharpValue>
+                                    </InArgument>
+                                  </ui:MessageBox.Text>
+                                </ui:MessageBox>
+                                <ui:OrchestratorHttpRequest JSONPayload="{x:Null}" ResponseHeaders="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Delete Queue" FolderPath="../CReST" sap:VirtualizedContainerService.HintSize="798,22" sap2010:WorkflowViewState.IdRef="OrchestratorHttpRequest_1" Method="DELETE">
+                                  <ui:OrchestratorHttpRequest.RelativeEndpoint>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">"/odata/QueueDefinitions("+dictQueue[item.Key]+")"</mca:CSharpValue>
+                                    </InArgument>
+                                  </ui:OrchestratorHttpRequest.RelativeEndpoint>
+                                  <ui:OrchestratorHttpRequest.Result>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">deleteResponse</mca:CSharpReference>
+                                    </OutArgument>
+                                  </ui:OrchestratorHttpRequest.Result>
+                                  <ui:OrchestratorHttpRequest.StatusCode>
+                                    <OutArgument x:TypeArguments="x:Int32">
+                                      <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">deleteStatus</mca:CSharpReference>
+                                    </OutArgument>
+                                  </ui:OrchestratorHttpRequest.StatusCode>
+                                </ui:OrchestratorHttpRequest>
+                                <If sap:VirtualizedContainerService.HintSize="798,338.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+                                  <If.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">deleteStatus == 204</mca:CSharpValue>
+                                    </InArgument>
+                                  </If.Condition>
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,176.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,84.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_3">
+                                        <ui:MessageBox.Text>
+                                          <InArgument x:TypeArguments="x:Object">
+                                            <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">item.Key+" was successfully deleted. status: "+deleteStatus</mca:CSharpValue>
+                                          </InArgument>
+                                        </ui:MessageBox.Text>
+                                      </ui:MessageBox>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,176.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,84.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_4">
+                                        <ui:MessageBox.Text>
+                                          <InArgument x:TypeArguments="x:Object">
+                                            <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">item.Key+" was NOT successfully deleted, try again. \n Response Status: "+deleteStatus</mca:CSharpValue>
+                                          </InArgument>
+                                        </ui:MessageBox.Text>
+                                      </ui:MessageBox>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                          <ui:ForEach.Values>
+                            <InArgument x:TypeArguments="sc:IEnumerable">
+                              <mca:CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">deleteDict</mca:CSharpValue>
+                            </InArgument>
+                          </ui:ForEach.Values>
+                        </ui:ForEach>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376,176.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,84.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_5">
+                          <ui:MessageBox.Text>
+                            <InArgument x:TypeArguments="x:Object">
+                              <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">"no queues for deletion"</mca:CSharpValue>
+                            </InArgument>
+                          </ui:MessageBox.Text>
+                        </ui:MessageBox>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+  </Flowchart>
+</Activity>

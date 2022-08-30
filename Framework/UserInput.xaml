@@ -1,0 +1,992 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="UserInput" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.Collections;assembly=mscorlib" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_GroupTypeDict" Type="OutArgument(scg:Dictionary(x:String, s:String[]))" />
+    <x:Property Name="out_RegionCountryDict" Type="OutArgument(scg:Dictionary(x:String, s:String[]))" />
+    <x:Property Name="out_activeCrossReference" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_productFamilyInfo" Type="OutArgument(x:Boolean)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>725.333333333333,7133.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="42">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.Form.Activities</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="47">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Callout.Activity</AssemblyReference>
+      <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>AlpacaUiPathFormBuilderLib</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap:VirtualizedContainerService.HintSize="735.333333333333,7068.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_74">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, s:String[])" Name="regionCountryDict">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:String[])" sap2010:WorkflowViewState.IdRef="CSharpValue`1_259">new Dictionary&lt;String, String[]&gt;{}</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, s:String[])" Name="groupTypeDict">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:String[])" sap2010:WorkflowViewState.IdRef="CSharpValue`1_260">new Dictionary&lt;String, String[]&gt;{}</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Browser Chrome: HP Services IT CReST - View Country Level Cross Reference" sap:VirtualizedContainerService.HintSize="693.333333333333,6976.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="2c352458-ec13-467e-b2c0-cc59025878c7" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="659.333333333333,6758.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_73">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="User Input" sap:VirtualizedContainerService.HintSize="617.333333333333,6460" sap2010:WorkflowViewState.IdRef="Sequence_72">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="ienRegion" />
+                <Variable x:TypeArguments="s:String[]" Name="arrRegion" />
+                <Variable x:TypeArguments="scg:List(x:String)" Name="listGroup" />
+                <Variable x:TypeArguments="s:String[]" Name="arrGroup" />
+                <Variable x:TypeArguments="x:String" Name="header" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:FindChildren DisplayName="ienRegion" Filter="&lt;webctrl /&gt;" sap:VirtualizedContainerService.HintSize="575.333333333333,106" sap2010:WorkflowViewState.IdRef="FindChildren_7" Scope="FIND_CHILDREN">
+                <ui:FindChildren.Children>
+                  <OutArgument x:TypeArguments="scg:IEnumerable(ui:UiElement)">
+                    <mca:CSharpReference x:TypeArguments="scg:IEnumerable(ui:UiElement)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_135">ienRegion</mca:CSharpReference>
+                  </OutArgument>
+                </ui:FindChildren.Children>
+                <ui:FindChildren.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6554c975-f7dd-4940-9b69-7dad19bb2ad0" InformativeScreenshot="2a268fd2cb5a756c424aa6b75f00afc9" Selector="&lt;webctrl id='table_regionAndCountry' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='SELECT' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:FindChildren.Target>
+              </ui:FindChildren>
+              <Assign sap:VirtualizedContainerService.HintSize="575.333333333333,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_63">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="s:String[]">
+                    <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_136">arrRegion</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="s:String[]">
+                    <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_261" xml:space="preserve">ienRegion
+.Select(u =&gt; u.Get("aaname",true).ToString())
+.Skip(1)
+.ToArray()</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <Sequence DisplayName="Region Form Sequence" sap:VirtualizedContainerService.HintSize="575.333333333333,1326" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="regionOutput" />
+                  <Variable x:TypeArguments="njl:JObject" Name="jsonRegion" />
+                  <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictionaryRegion" />
+                  <Variable x:TypeArguments="scg:List(x:String)" Name="regionList" />
+                  <Variable x:TypeArguments="x:Boolean" Default="False" Name="checkBool" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_64">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(x:String)">
+                      <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_137">regionList</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(x:String)">
+                      <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_262">arrRegion.ToList()</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" IconPath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="48920cb3-0815-404a-8531-c9667b71b79e" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form" FormHeight="577" FormSchema="%[{&quot;html&quot;:&quot;&lt;figure class=\&quot;image image-style-align-right image_resized\&quot; style=\&quot;margin-top:-35px;margin-right:-25px;\&quot;&gt;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAVeSURBVGhDzZp5yGZjGMZf+26MZM+esSWyJ2QvWRqMqEHJH7ZQZAnZ/iBZS9YkW9bGoBlrWcouu5ItlEiy7/vvOjxv19xzn+2d95vmql+Z79znPu85z3me57rvYzCB2hjO+58L4FSYBtvCUrBAaB04G46t/jWnboZ/avgAZsFRsAbMd+0M18OvoB90JLiWhi8g/vCMb+BK2AYmXFPgVvAf8CksBq6p4DFd+BOugZVhQnQ86GnFC18FUfdBjOvKZzAdxiZNuFsgu5iIQ78qfAdZbB+yB9Nb68M7kF1AvAhRJ0IWOwrPwAowktaGdyFLXDgJop6ALHZUnoLloZeWg/chS1j4GXSTrk0gi51XnoZemgFZIudJiDoXsthx0HlOnA5Zgkhc+6W2UZtXDoJGbQhlc2pCq8yK4NLmlsWOky9hMtTqEchOjNwIUXdCFjturoZUu0B2Qsbe4Cp7xWMwGx6AZ+F7yM4Xshr3g+Iz5JUehPha/gVx8aikZB5Yx8cQrcPCsMh//znUorA63A1ZnuOgiybBwfADlHMvgTm0AejO/AJ1zHVyB70EnuNb6Lu2Hw3l/K9BNzbU+eAXaGJrcC0Ju8FOsAdsBVGqCTyHDGGUdv3dQa+y8q0ErlXAcxwKQz0PfrCOFyBKnt5jroWou8Bj9gGX7Pcn4DGqNVw7gB+/FyrJfGlI/WAd2iOitNV7zK7gkj3+Ccpx2e9lwbU/eI5HIeoK8JgPYXGohs0P1PELrAsuWQefO6/BQuA6GTyPipeoe8BjVE+4tMrJZnuMrrsZVOWgH6gjeyoXgcecBlHPgcdE+6133VeYz2EZcMURKujvgwvtD00cBi496Wi1NRFdquD+hnL8dYjL7eHgOTLPcxt4TOEEaCy+C19B9OU7gsdoF486CzzmDIh6GDxGk9Wl1edH8JiCHn4nC6BVJErvssccA1E+Qn+ARsSl/ed3KDFvQ5TyluMRud9ONxCXPb2jMlbluDaWaLK0J3iObA5F+91lDjnVDbS9Qlr2ZAtch4DH3AFR2g885ghwaQ69AeW4uhLZCP0GnsepXqG2SayuWlTsOuwJLtkErSbluLoZcQ6pQ+c5VIpGtdUm1SRuW0a3BNdqEDemJcC1L3iObA5dBh4Tu3saoTfBYyIHwGAv+0PkVYhyUyXUjIqKJWnbxqQCSQ/GJW/lOSJanquHuybULVNnQlT0TduDS9bE88l+x7Vf9thz3A5RcQ5FlHc48jJpWVDcmGQdfNl7BaL0XnqOS8GlV0P9JI/ZD1xyuHo1PSai+mUoTdQYoKoqKsZVkyhIzSiP2QJcugG9u9rZhVrucYS0bHuODL3KQ8kUxQANc5RPKk1kVVyu9cBzvAWq1vpqJnieiErVuZrAD0EJ0ASTR3fJJnuSbIQuBo+RlegjLbXRIGakPSJvi2iXlcUtBbaeiD5KeBIV21ptSoxuyF2l7K7aNC6NkAr1x6Gc5+d/BH6NOjaFVEqcnTAKMmlR4+jc3QS12hy0pWcn9kU22aWJKjudxXZFO3rrB5BzIDu5D9qYZINd20EW24fop2oVPXpfMutwHWSxXbkBOkt9z7aNpImq1DPJzcaatg/q8kVH3CoV8O9BlrCJrHN3IGSxXVDXQ98rRtJGoPZFlriOyyEqftnsyssw8iemIrXw6vqbGZqsLpk7t99dkZmr+j7jkpxp27cDVVhR+jybxdahTbTzatNX2ieauthZ10Hft7LYiPYflbdp63zc0vcBNQNiRzv2M2UlmmpaodpBRdF8+V8NovQDTwHVBZonUaoFsh+tJVo1sOz4WrBASD4/Sru6usiqf/V6yV7I1TZ+5+quweBfV7S3n2Ar7I8AAAAASUVORK5CYII=\&quot;&gt;&lt;/figure&gt;&quot;,&quot;label&quot;:&quot;Content&quot;,&quot;customClass&quot;:&quot;styledimg&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;content&quot;,&quot;type&quot;:&quot;content&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false},{&quot;tag&quot;:&quot;h3&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong&gt;Choose Regions&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;region_header&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Choose Regions&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;Regions:&lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;ctrl+A to select all&quot;,&quot;customClass&quot;:&quot;form-check&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:{&quot;&lt;font face=&quot;:true,&quot;&quot;:false,&quot;value&quot;:false,&quot;fontFaceFormaDjrDisplayResetFont&quot;:false,&quot;fontFaceFormaDjrDisplayFont&quot;:false,&quot;fontFaceFormaDjrDisplayDatFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoicFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoiceFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoiceFontDataHeaderFont&quot;:false,&quot;choice&quot;:false},&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;choice&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;minSelectedCount&quot;:1},&quot;minSelectedCountMessage&quot;:&quot;You must select at least one region&quot;,&quot;key&quot;:&quot;choice&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;value&quot;:true,&quot;shortcut&quot;:&quot;A&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;input&quot;:true},{&quot;tag&quot;:&quot;h3&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong&gt;Additional Parameters&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;parameters_header&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Choose Regions&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;Active Cross Reference&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;activeCrossReference&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Show Only Product Family Information&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:true,&quot;key&quot;:&quot;showOnlyProductFamilyInformation&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;activeCrossReference&quot;,&quot;eq&quot;:&quot;true&quot;},&quot;type&quot;:&quot;checkbox&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;center&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:2,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;SUBMIT&lt;/strong&gt;&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;saveOnEnter&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;RESET  &lt;/strong&gt;&quot;,&quot;action&quot;:&quot;reset&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;resetAll&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]}]]}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100200&quot;,&quot;Name&quot;:&quot;Paper&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/paper.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/paper.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="Select Region" FormWidth="450" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="334,212" sap2010:WorkflowViewState.IdRef="FormActivity_10" IsReadOnly="False" LocalCSSFilePath="/file://C:\Users\RimelSte\Documents\UiPath\CReST3\form1.css" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" StartAsMinimized="False">
+                  <ufa:FormActivity.Body>
+                    <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,86" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </ActivityAction>
+                  </ufa:FormActivity.Body>
+                  <ufa:FormActivity.DelayBody>
+                    <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                      <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_10" />
+                    </ActivityAction>
+                  </ufa:FormActivity.DelayBody>
+                  <ufa:FormActivity.FormFieldsCollection>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="choice" />
+                    <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="choice_selectboxes">
+                      <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_138">regionList</mca:CSharpReference>
+                    </InOutArgument>
+                  </ufa:FormActivity.FormFieldsCollection>
+                  <ufa:FormActivity.FormFieldsOutputData>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_139">regionOutput</mca:CSharpReference>
+                    </OutArgument>
+                  </ufa:FormActivity.FormFieldsOutputData>
+                </ufa:FormActivity>
+                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_9">
+                  <ui:DeserializeJson.JsonObject>
+                    <OutArgument x:TypeArguments="njl:JObject">
+                      <mca:CSharpReference x:TypeArguments="njl:JObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_140">jsonRegion</mca:CSharpReference>
+                    </OutArgument>
+                  </ui:DeserializeJson.JsonObject>
+                  <ui:DeserializeJson.JsonString>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_263">regionOutput</mca:CSharpValue>
+                    </InArgument>
+                  </ui:DeserializeJson.JsonString>
+                </ui:DeserializeJson>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_36">
+                  <ui:LogMessage.Message>
+                    <InArgument x:TypeArguments="x:Object">
+                      <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_311">regionOutput</mca:CSharpValue>
+                    </InArgument>
+                  </ui:LogMessage.Message>
+                </ui:LogMessage>
+                <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_89">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_184">out_activeCrossReference</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_319">Convert.ToBoolean(jsonRegion["activeCrossReference"].ToString())</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_90">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_185">out_productFamilyInfo</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_320">Convert.ToBoolean(jsonRegion["showOnlyProductFamilyInformation"].ToString())</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_37">
+                  <ui:LogMessage.Message>
+                    <InArgument x:TypeArguments="x:Object">
+                      <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_316">"activeCrossReference: "+out_activeCrossReference+" productFamilyInfo: "+out_productFamilyInfo</mca:CSharpValue>
+                    </InArgument>
+                  </ui:LogMessage.Message>
+                </ui:LogMessage>
+                <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_65">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                      <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_141">dictionaryRegion</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                      <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_328" xml:space="preserve">jsonRegion["choice"].ToObject&lt;Dictionary&lt;string, string&gt;&gt;()
+	.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value)</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_66">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:String[]">
+                      <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_142">arrRegion</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:String[]">
+                      <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_265" xml:space="preserve">dictionaryRegion.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value).Keys.ToArray()</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_30">
+                  <ui:LogMessage.Message>
+                    <InArgument x:TypeArguments="x:Object">
+                      <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_266">"arrRegion Fitered: "+string.Join(Environment.NewLine, arrRegion)</mca:CSharpValue>
+                    </InArgument>
+                  </ui:LogMessage.Message>
+                </ui:LogMessage>
+              </Sequence>
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="575.333333333333,1728" sap2010:WorkflowViewState.IdRef="ForEach`1_21">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:String">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:String" Name="region" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="418,1600.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="ienCountry" />
+                        <Variable x:TypeArguments="x:String" Name="countryOutput" />
+                        <Variable x:TypeArguments="scg:List(x:String)" Name="countryList" />
+                        <Variable x:TypeArguments="s:String[]" Name="arrCountry" />
+                        <Variable x:TypeArguments="x:String" Name="regionCountryDict_region_" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <uix:NSelectItem DisplayName="Select Item 'Region'" sap:VirtualizedContainerService.HintSize="376,158" sap2010:WorkflowViewState.IdRef="NSelectItem_11" ScopeIdentifier="2c352458-ec13-467e-b2c0-cc59025878c7" Version="V1">
+                        <uix:NSelectItem.Item>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_267">region.Trim()</mca:CSharpValue>
+                          </InArgument>
+                        </uix:NSelectItem.Item>
+                        <uix:NSelectItem.Items>
+                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                            <x:String>Please Select</x:String>
+                            <x:String>Americas</x:String>
+                            <x:String>AP Region</x:String>
+                            <x:String>EMEA Region</x:String>
+                          </scg:List>
+                        </uix:NSelectItem.Items>
+                        <uix:NSelectItem.Target>
+                          <uix:TargetAnchorable BrowserURL="https://hpi-itg-cams-crest.corp.hpicloud.net/crestwebsite/XREF_countryCrossReferenceView.aspx" DesignTimeRectangle="546, 387, 245, 27" ElementType="DropDown" FriendlyName="'AP Region'" FullSelectorArgument="&lt;webctrl id='table_regionAndCountry' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='table_regionAndCountry' tag='TABLE' /&gt;&lt;webctrl type='' tag='SELECT' class='' aaname='' /&gt;" Guid="b71b2471-9f63-4c4a-936c-14df37b66ad3" InformativeScreenshot="00e3ede247cdd777c007705b438de018.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HP Services IT CReST - View Country Level Cross Reference' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                <uix:Target DesignTimeRectangle="311, 389, 51, 17" ElementType="Text" FriendlyName="'Region'" FullSelectorArgument="&lt;webctrl id='table_regionAndCountry' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='STRONG' /&gt;" FuzzySelectorArgument="&lt;webctrl id='table_regionAndCountry' tag='TABLE' /&gt;&lt;webctrl type='' tag='STRONG' class='' aaname='Region' check:innerText='Region' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADcAAAAVCAYAAADiv3Z7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAE+SURBVFhH7ZTREYMgDIadkTsX8lhFR9FBfHCMFGogMWChLdTa+t/lwYiQL/mlgR/WBXdWXXBn1X/ALYOCpml2QsOI64pp7kHZvdseFkyVViacidJFHAGnBnnUCPoOqKCfMXUSZcAt0Lfr9PSEKSM5af5ulWuKDWtr94wW35lc4KBu+0OM3ZrXE9UVW2eVhnNFsMkFBWAQIAfDaBXusw/nCg8iZ40J2eD8f853JmJTWeik8Tu6iGj/HTjfxHiTXM7DeWCaoBxMFtymI6yIMNbC4y5I2NI1RNjL14V5B8f3jp/3yJYcgh/4JXC84c/DWTEQykdsKfUBW74PZ0RFpS8U6joV5aPwhVIEzryhK5cdEgAKO20BLVDClqjUvi/BFZW3JbNuxKq1VQduMzURwYTrqRKcEbsgjgCzqgd3uABuiqwxj8GtiLoAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NSelectItem.Target>
+                      </uix:NSelectItem>
+                      <ui:FindChildren DisplayName="ienCountry" Filter="&lt;webctrl /&gt;" sap:VirtualizedContainerService.HintSize="376,106" sap2010:WorkflowViewState.IdRef="FindChildren_8" Scope="FIND_CHILDREN">
+                        <ui:FindChildren.Children>
+                          <OutArgument x:TypeArguments="scg:IEnumerable(ui:UiElement)">
+                            <mca:CSharpReference x:TypeArguments="scg:IEnumerable(ui:UiElement)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_143">ienCountry</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:FindChildren.Children>
+                        <ui:FindChildren.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6554c975-f7dd-4940-9b69-7dad19bb2ad0" InformativeScreenshot="25be34bb7232c854386074e69183f379" Selector="&lt;webctrl id='table_regionAndCountry' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='SELECT' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:FindChildren.Target>
+                      </ui:FindChildren>
+                      <Assign sap:VirtualizedContainerService.HintSize="376,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_67">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:String[]">
+                            <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_144">arrCountry</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:String[]">
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_268" xml:space="preserve">ienCountry
+.Select(u =&gt; u.Get("aaname",true).ToString())
+.Skip(1)
+.ToArray()</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Sequence DisplayName="Country Form Sequence" sap:VirtualizedContainerService.HintSize="376,954.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="regionOutput" />
+                          <Variable x:TypeArguments="njl:JObject" Name="jsonRegion" />
+                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictionaryRegion" />
+                          <Variable x:TypeArguments="njl:JObject" Name="jsonCountry" />
+                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictionaryCountry" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_68">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="scg:List(x:String)">
+                              <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_145">countryList</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="scg:List(x:String)">
+                              <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_269">arrCountry.ToList()</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_69">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_146">header</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_270">"Choose Countries In "+region</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" IconPath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="48920cb3-0815-404a-8531-c9667b71b79e" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form" FormHeight="600" FormSchema="%[{&quot;html&quot;:&quot;&lt;figure class=\&quot;image image-style-align-right image_resized\&quot; style=\&quot;margin-top:-35px;margin-right:-25px;\&quot;&gt;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAVeSURBVGhDzZp5yGZjGMZf+26MZM+esSWyJ2QvWRqMqEHJH7ZQZAnZ/iBZS9YkW9bGoBlrWcouu5ItlEiy7/vvOjxv19xzn+2d95vmql+Z79znPu85z3me57rvYzCB2hjO+58L4FSYBtvCUrBAaB04G46t/jWnboZ/avgAZsFRsAbMd+0M18OvoB90JLiWhi8g/vCMb+BK2AYmXFPgVvAf8CksBq6p4DFd+BOugZVhQnQ86GnFC18FUfdBjOvKZzAdxiZNuFsgu5iIQ78qfAdZbB+yB9Nb68M7kF1AvAhRJ0IWOwrPwAowktaGdyFLXDgJop6ALHZUnoLloZeWg/chS1j4GXSTrk0gi51XnoZemgFZIudJiDoXsthx0HlOnA5Zgkhc+6W2UZtXDoJGbQhlc2pCq8yK4NLmlsWOky9hMtTqEchOjNwIUXdCFjturoZUu0B2Qsbe4Cp7xWMwGx6AZ+F7yM4Xshr3g+Iz5JUehPha/gVx8aikZB5Yx8cQrcPCsMh//znUorA63A1ZnuOgiybBwfADlHMvgTm0AejO/AJ1zHVyB70EnuNb6Lu2Hw3l/K9BNzbU+eAXaGJrcC0Ju8FOsAdsBVGqCTyHDGGUdv3dQa+y8q0ErlXAcxwKQz0PfrCOFyBKnt5jroWou8Bj9gGX7Pcn4DGqNVw7gB+/FyrJfGlI/WAd2iOitNV7zK7gkj3+Ccpx2e9lwbU/eI5HIeoK8JgPYXGohs0P1PELrAsuWQefO6/BQuA6GTyPipeoe8BjVE+4tMrJZnuMrrsZVOWgH6gjeyoXgcecBlHPgcdE+6133VeYz2EZcMURKujvgwvtD00cBi496Wi1NRFdquD+hnL8dYjL7eHgOTLPcxt4TOEEaCy+C19B9OU7gsdoF486CzzmDIh6GDxGk9Wl1edH8JiCHn4nC6BVJErvssccA1E+Qn+ARsSl/ed3KDFvQ5TyluMRud9ONxCXPb2jMlbluDaWaLK0J3iObA5F+91lDjnVDbS9Qlr2ZAtch4DH3AFR2g885ghwaQ69AeW4uhLZCP0GnsepXqG2SayuWlTsOuwJLtkErSbluLoZcQ6pQ+c5VIpGtdUm1SRuW0a3BNdqEDemJcC1L3iObA5dBh4Tu3saoTfBYyIHwGAv+0PkVYhyUyXUjIqKJWnbxqQCSQ/GJW/lOSJanquHuybULVNnQlT0TduDS9bE88l+x7Vf9thz3A5RcQ5FlHc48jJpWVDcmGQdfNl7BaL0XnqOS8GlV0P9JI/ZD1xyuHo1PSai+mUoTdQYoKoqKsZVkyhIzSiP2QJcugG9u9rZhVrucYS0bHuODL3KQ8kUxQANc5RPKk1kVVyu9cBzvAWq1vpqJnieiErVuZrAD0EJ0ASTR3fJJnuSbIQuBo+RlegjLbXRIGakPSJvi2iXlcUtBbaeiD5KeBIV21ptSoxuyF2l7K7aNC6NkAr1x6Gc5+d/BH6NOjaFVEqcnTAKMmlR4+jc3QS12hy0pWcn9kU22aWJKjudxXZFO3rrB5BzIDu5D9qYZINd20EW24fop2oVPXpfMutwHWSxXbkBOkt9z7aNpImq1DPJzcaatg/q8kVH3CoV8O9BlrCJrHN3IGSxXVDXQ98rRtJGoPZFlriOyyEqftnsyssw8iemIrXw6vqbGZqsLpk7t99dkZmr+j7jkpxp27cDVVhR+jybxdahTbTzatNX2ieauthZ10Hft7LYiPYflbdp63zc0vcBNQNiRzv2M2UlmmpaodpBRdF8+V8NovQDTwHVBZonUaoFsh+tJVo1sOz4WrBASD4/Sru6usiqf/V6yV7I1TZ+5+quweBfV7S3n2Ar7I8AAAAASUVORK5CYII=\&quot;&gt;&lt;/figure&gt;&quot;,&quot;label&quot;:&quot;Content&quot;,&quot;customClass&quot;:&quot;styledimg&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;content&quot;,&quot;type&quot;:&quot;content&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false},{&quot;tag&quot;:&quot;h4&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;{{data.header}}&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;region_header&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Choose Regions&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;&lt;strong&gt;Countries:&lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;ctrl+A to select all&quot;,&quot;customClass&quot;:&quot;text-font&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:{&quot;&lt;font face=&quot;:true,&quot;&quot;:false,&quot;value&quot;:false,&quot;fontFaceFormaDjrDisplayResetFont&quot;:false,&quot;fontFaceFormaDjrDisplayFont&quot;:false,&quot;fontFaceFormaDjrDisplayDatFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoicFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoiceFont&quot;:false,&quot;choice&quot;:false},&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;choice&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;minSelectedCount&quot;:1},&quot;minSelectedCountMessage&quot;:&quot;You must select at least one region&quot;,&quot;key&quot;:&quot;choice&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;value&quot;:true,&quot;shortcut&quot;:&quot;A&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;center&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:2,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;SUBMIT&lt;/strong&gt;&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;saveOnEnter&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;RESET&lt;/strong&gt;&quot;,&quot;action&quot;:&quot;reset&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;resetAll&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]}]]}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100200&quot;,&quot;Name&quot;:&quot;Paper&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/paper.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/paper.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormWidth="400" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="334,212" sap2010:WorkflowViewState.IdRef="FormActivity_17" IsReadOnly="False" LocalCSSFilePath="/file://C:\Users\RimelSte\Documents\UiPath\CReST3\form1.css" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" StartAsMinimized="False">
+                          <ufa:FormActivity.Body>
+                            <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,86" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </ActivityAction>
+                          </ufa:FormActivity.Body>
+                          <ufa:FormActivity.DelayBody>
+                            <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                              <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_17" />
+                            </ActivityAction>
+                          </ufa:FormActivity.DelayBody>
+                          <ufa:FormActivity.FormFieldsCollection>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="choice" />
+                            <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="choice_selectboxes">
+                              <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_189">countryList</mca:CSharpReference>
+                            </InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="header">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_188">header</mca:CSharpReference>
+                            </InOutArgument>
+                          </ufa:FormActivity.FormFieldsCollection>
+                          <ufa:FormActivity.FormFieldsOutputData>
+                            <OutArgument x:TypeArguments="x:String">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_191">countryOutput</mca:CSharpReference>
+                            </OutArgument>
+                          </ufa:FormActivity.FormFieldsOutputData>
+                          <ufa:FormActivity.FormTitle>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_323">"Choose Country For "+region</mca:CSharpValue>
+                            </InArgument>
+                          </ufa:FormActivity.FormTitle>
+                        </ufa:FormActivity>
+                        <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_10">
+                          <ui:DeserializeJson.JsonObject>
+                            <OutArgument x:TypeArguments="njl:JObject">
+                              <mca:CSharpReference x:TypeArguments="njl:JObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_149">jsonCountry</mca:CSharpReference>
+                            </OutArgument>
+                          </ui:DeserializeJson.JsonObject>
+                          <ui:DeserializeJson.JsonString>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_273">countryOutput</mca:CSharpValue>
+                            </InArgument>
+                          </ui:DeserializeJson.JsonString>
+                        </ui:DeserializeJson>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_70">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                              <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_150">dictionaryCountry</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                              <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_274" xml:space="preserve">jsonCountry["choice"].ToObject&lt;Dictionary&lt;string, string&gt;&gt;()
+	.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_71">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_151">arrCountry</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_275" xml:space="preserve">dictionaryCountry.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value).Keys.ToArray()</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_31">
+                          <ui:LogMessage.Message>
+                            <InArgument x:TypeArguments="x:Object">
+                              <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_276">"arrCountry Fitered: "+string.Join(Environment.NewLine, arrCountry)</mca:CSharpValue>
+                            </InArgument>
+                          </ui:LogMessage.Message>
+                        </ui:LogMessage>
+                      </Sequence>
+                      <Assign sap:VirtualizedContainerService.HintSize="376,62" sap2010:WorkflowViewState.IdRef="Assign_72">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:String[]">
+                            <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_152">regionCountryDict[region]</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:String[]">
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_277">arrCountry</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+                <ui:ForEach.Values>
+                  <InArgument x:TypeArguments="sc:IEnumerable">
+                    <mca:CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_278">arrRegion</mca:CSharpValue>
+                  </InArgument>
+                </ui:ForEach.Values>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ForEach>
+              <uix:NClick ClickType="Single" DisplayName="Click 'Product Family'" sap:VirtualizedContainerService.HintSize="575.333333333333,158" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2c352458-ec13-467e-b2c0-cc59025878c7" Version="V1">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://hpi-itg-cams-crest.corp.hpicloud.net/crestwebsite/XREF_countryCrossReferenceView.aspx" DesignTimeRectangle="588, 535, 19, 19" ElementType="RadioButton" FriendlyName="'INPUT UC_hardwareChoice…'" FullSelectorArgument="&lt;webctrl id='Table8' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='Table8' tag='TABLE' /&gt;&lt;webctrl type='radio' tag='INPUT' class='' aaname=' ' /&gt;" Guid="8568d2c3-da3c-4b68-9090-cb5a9fda0f54" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFGSURBVEhL1dO9TQRBDAVgAlJyYroggjoQbSACiIgoAAkSIIOYiB74CangrgA6MPtpz6vZvVlAQgPiSZZGnue3z17PRjTE34k/vEUc3kfsnEdsHvfhLOfuK1TFXxYRe5fd5VHE9lnEwV3EyWMfznLucHDnsCbOEYcErp9WyQpunnsO7lwXI3EukHcvIpbvq2SH12XEbScmnBM4uGpqHYzEtclNChPav+pHUIZcfgRXjdopBnGtKdQuKN46HYuW4S4/YHxy0/EM4jaAg0TN8TRwEmpplBjErZhNAI5qYrVI92pplBjE/RSrBn5cTagWuKCWRonfEW86lqY/NFcxXyVH311F6ys3u4rQ7BFB0+cPWkPmJl9rDcaHgzsdR2JNHLjQphEQsAlWTTjLucOpOU5UxRMc2QArxqFwlptzW+JT8Z/iv4pHfAB+7DdqSJfr5gAAAABJRU5ErkJggg==" InformativeScreenshot="6c3ca111074590cb2525a561f7043226.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HP Services IT CReST - View Country Level Cross Reference' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="313, 533, 108, 17" ElementType="Text" FriendlyName="'Product Family'" FullSelectorArgument="&lt;webctrl id='Table8' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='STRONG' /&gt;" FuzzySelectorArgument="&lt;webctrl id='Table8' tag='TABLE' /&gt;&lt;webctrl type='' tag='STRONG' class='' aaname='Product Family' check:innerText='Product Family' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHAAAAAVCAYAAACe2WqiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAIoSURBVGhD7ZdrjoMgFIVdo0k31LgVuxS7kP7oMhhA7pNbRCNNnXCSm4wW7+N8YDuD67q0OsCLqwO8uDrAi6sDvLg6wIuLAVzcNAxusOI2u3dadb7ebr6FOqObX+nWt/Sa3WjNm2J6pnUtBLXBW31dqTqAIZpBbAkw5C7k/Z8AJ/8XEw7Z6oS0AgjzVABstjl3qBlANBh2JK2bH2O8z59Z7utaiPGh26F86+dLBhBy8BPwTrVEvueEeWLcsYv8bYKfMdWahpuYgvpg/jz4uuQJ75H3oGura8sDzMXyHDiBhjmxqAQjAgsW1uwFqOFBxFo7AVqB641cMaDf0kx54EwbAC1Yli8HvgNpnX0a2CtLw882g5fx3DZAMo16gL5gA8I1q6VVBVCLnbjYHwMIz7DNBTPATNjvFsCP88gDVgdQDGMbY77ivETjxq4iA/YAtIeRsvsUykwrKT9pGiD2ixuD+sv82QSofDC9q/oO1LLXtQDIc8l73wSoa2lgBYAs7xGA3C9rUwedBpBeG8wwaAru6esg4zlolkBDTTCATCPIGli+MTJZpimB8VYvzQGyWmvkbM4DyAbJAocvrGFGo2lGoAEIXgUaoGqJU59UAfBjHR/tAXq3YTOHMGY4EeAqUdAHnRCQNNb6NyJI5PFDLdqAIG2uGl5sBPVZVA1Ar8xEqBsNbQsQ7/vA/EwMYNdPCgHaB6YD/HHlvwekOsBfFXt1ll7xHeCl5dwfveJ/xwyc0E8AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+              </uix:NClick>
+              <uix:NSelectItem DisplayName="Select Item 'Category'" sap:VirtualizedContainerService.HintSize="575.333333333333,158" sap2010:WorkflowViewState.IdRef="NSelectItem_12" Item="Hardware" ScopeIdentifier="2c352458-ec13-467e-b2c0-cc59025878c7" Version="V1">
+                <uix:NSelectItem.Items>
+                  <scg:List x:TypeArguments="x:String" Capacity="7">
+                    <x:String>Please Select</x:String>
+                    <x:String>Business PC Software</x:String>
+                    <x:String>Hardware</x:String>
+                    <x:String>Helpdesk</x:String>
+                    <x:String>Imaging &amp; Printing Software</x:String>
+                    <x:String>Installation and Startup of Software Services</x:String>
+                    <x:String>Technical Services</x:String>
+                  </scg:List>
+                </uix:NSelectItem.Items>
+                <uix:NSelectItem.Target>
+                  <uix:TargetAnchorable BrowserURL="https://hpi-itg-cams-crest.corp.hpicloud.net/crestwebsite/XREF_countryCrossReferenceView.aspx" DesignTimeRectangle="472, 610, 420, 27" ElementType="DropDown" FriendlyName="'Hardware'" FullSelectorArgument="&lt;webctrl tableRow='6' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SELECT' class='' aaname='' /&gt;" Guid="2f9f2383-9766-4551-b9ea-8b469305580f" InformativeScreenshot="fd3e43081c6f8511d71290c1b70fd37c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HP Services IT CReST - View Country Level Cross Reference' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="322, 613, 65, 17" ElementType="Text" FriendlyName="'Category'" FullSelectorArgument="&lt;webctrl tableRow='6' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='STRONG' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='STRONG' class='' aaname='Category' check:innerText='Category' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEUAAAAVCAYAAAAQAyPeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAG9SURBVFhH7ZZNjoMwDIU5I1IvVHGLruEo9CBdcIwMDrFjxy+IETMqVfMkL3B+7Hyx03ahyalBAWpQgBoUoAYFyEN5jaHvutAp66clDX6HDJRl6g0MY7cx/A7NEsZbH8ZX+vwgZSiqQoZn8q3SoLR/X3MY4poPh8KHR60y30s/VUGqIDapJAai7D7HETfmqk/vS0D5u4DrWnxYd86ifMk/TOqiH8M2V3IhcT52vUCRjQ5UA88tbQNXgwL8ZAIGgF5h9CWUZzqcszzH50djAADvZUAJlJzQ8RbJkhZzFZET9XNy8jGm3D4CwD4FDuzDPvkuKtHEA9+sU1Dcw7wDRRIFFisM3lrZPuC2SQJ083Ms9xSYGJW9Vrk3xSa1iYLoACXhI5XyDij+gtX6SuuQBErt1yeXcPIXCZDkwBKgPMw+9Kh/aB9U9eXloDkZyirXDtr2fl3YHBTtr60DB1ZjZx5adGC73rcOyUCJUhXDVu3NaLSxL2sDuApUHTZKg6ExX3FRLkd7uF0oOkalaj2Udwm1L2qp08pQMLQrQYHtk8z9yTshqXLcOqQLQSGBd+fPgJStmdxAF4NyDTUoTiH8ACzmMlObTRnxAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NSelectItem.Target>
+              </uix:NSelectItem>
+              <Assign sap:VirtualizedContainerService.HintSize="575.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_73">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">
+                    <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_153">listGroup</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_279">new List&lt;String&gt; {"Computers","HP 3D Printing","HP Graphics Printers","Printers &amp; Digital Imaging","S-Printers"}</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <Sequence DisplayName="Group Form Sequence" sap:VirtualizedContainerService.HintSize="575.333333333333,750.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="njl:JObject" Name="jsonGroup" />
+                  <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictionaryGroup" />
+                  <Variable x:TypeArguments="x:String" Name="groupOutput" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" IconPath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="48920cb3-0815-404a-8531-c9667b71b79e" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form" FormHeight="500" FormSchema="%[{&quot;html&quot;:&quot;&lt;figure class=\&quot;image image-style-align-right image_resized\&quot; style=\&quot;margin-top:-35px;margin-right:-25px;\&quot;&gt;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAVeSURBVGhDzZp5yGZjGMZf+26MZM+esSWyJ2QvWRqMqEHJH7ZQZAnZ/iBZS9YkW9bGoBlrWcouu5ItlEiy7/vvOjxv19xzn+2d95vmql+Z79znPu85z3me57rvYzCB2hjO+58L4FSYBtvCUrBAaB04G46t/jWnboZ/avgAZsFRsAbMd+0M18OvoB90JLiWhi8g/vCMb+BK2AYmXFPgVvAf8CksBq6p4DFd+BOugZVhQnQ86GnFC18FUfdBjOvKZzAdxiZNuFsgu5iIQ78qfAdZbB+yB9Nb68M7kF1AvAhRJ0IWOwrPwAowktaGdyFLXDgJop6ALHZUnoLloZeWg/chS1j4GXSTrk0gi51XnoZemgFZIudJiDoXsthx0HlOnA5Zgkhc+6W2UZtXDoJGbQhlc2pCq8yK4NLmlsWOky9hMtTqEchOjNwIUXdCFjturoZUu0B2Qsbe4Cp7xWMwGx6AZ+F7yM4Xshr3g+Iz5JUehPha/gVx8aikZB5Yx8cQrcPCsMh//znUorA63A1ZnuOgiybBwfADlHMvgTm0AejO/AJ1zHVyB70EnuNb6Lu2Hw3l/K9BNzbU+eAXaGJrcC0Ju8FOsAdsBVGqCTyHDGGUdv3dQa+y8q0ErlXAcxwKQz0PfrCOFyBKnt5jroWou8Bj9gGX7Pcn4DGqNVw7gB+/FyrJfGlI/WAd2iOitNV7zK7gkj3+Ccpx2e9lwbU/eI5HIeoK8JgPYXGohs0P1PELrAsuWQefO6/BQuA6GTyPipeoe8BjVE+4tMrJZnuMrrsZVOWgH6gjeyoXgcecBlHPgcdE+6133VeYz2EZcMURKujvgwvtD00cBi496Wi1NRFdquD+hnL8dYjL7eHgOTLPcxt4TOEEaCy+C19B9OU7gsdoF486CzzmDIh6GDxGk9Wl1edH8JiCHn4nC6BVJErvssccA1E+Qn+ARsSl/ed3KDFvQ5TyluMRud9ONxCXPb2jMlbluDaWaLK0J3iObA5F+91lDjnVDbS9Qlr2ZAtch4DH3AFR2g885ghwaQ69AeW4uhLZCP0GnsepXqG2SayuWlTsOuwJLtkErSbluLoZcQ6pQ+c5VIpGtdUm1SRuW0a3BNdqEDemJcC1L3iObA5dBh4Tu3saoTfBYyIHwGAv+0PkVYhyUyXUjIqKJWnbxqQCSQ/GJW/lOSJanquHuybULVNnQlT0TduDS9bE88l+x7Vf9thz3A5RcQ5FlHc48jJpWVDcmGQdfNl7BaL0XnqOS8GlV0P9JI/ZD1xyuHo1PSai+mUoTdQYoKoqKsZVkyhIzSiP2QJcugG9u9rZhVrucYS0bHuODL3KQ8kUxQANc5RPKk1kVVyu9cBzvAWq1vpqJnieiErVuZrAD0EJ0ASTR3fJJnuSbIQuBo+RlegjLbXRIGakPSJvi2iXlcUtBbaeiD5KeBIV21ptSoxuyF2l7K7aNC6NkAr1x6Gc5+d/BH6NOjaFVEqcnTAKMmlR4+jc3QS12hy0pWcn9kU22aWJKjudxXZFO3rrB5BzIDu5D9qYZINd20EW24fop2oVPXpfMutwHWSxXbkBOkt9z7aNpImq1DPJzcaatg/q8kVH3CoV8O9BlrCJrHN3IGSxXVDXQ98rRtJGoPZFlriOyyEqftnsyssw8iemIrXw6vqbGZqsLpk7t99dkZmr+j7jkpxp27cDVVhR+jybxdahTbTzatNX2ieauthZ10Hft7LYiPYflbdp63zc0vcBNQNiRzv2M2UlmmpaodpBRdF8+V8NovQDTwHVBZonUaoFsh+tJVo1sOz4WrBASD4/Sru6usiqf/V6yV7I1TZ+5+quweBfV7S3n2Ar7I8AAAAASUVORK5CYII=\&quot;&gt;&lt;/figure&gt;&quot;,&quot;label&quot;:&quot;Content&quot;,&quot;customClass&quot;:&quot;styledimg&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;content&quot;,&quot;type&quot;:&quot;content&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false},{&quot;tag&quot;:&quot;h3&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;Choose Groups&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;region_header&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Choose Regions&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;&lt;strong&gt;Groups:&lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;ctrl+A to select all&quot;,&quot;customClass&quot;:&quot;text-font&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:{&quot;&lt;font face=&quot;:true,&quot;&quot;:false,&quot;value&quot;:false,&quot;fontFaceFormaDjrDisplayResetFont&quot;:false,&quot;fontFaceFormaDjrDisplayFont&quot;:false,&quot;fontFaceFormaDjrDisplayDatFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoicFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoiceFont&quot;:false,&quot;choice&quot;:false},&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;choice&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;minSelectedCount&quot;:1},&quot;minSelectedCountMessage&quot;:&quot;You must select at least one region&quot;,&quot;key&quot;:&quot;choice&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;value&quot;:true,&quot;shortcut&quot;:&quot;A&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;center&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:2,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;SUBMIT&lt;/strong&gt;&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;saveOnEnter&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;RESET&lt;/strong&gt;&quot;,&quot;action&quot;:&quot;reset&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;resetAll&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]}]]}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100200&quot;,&quot;Name&quot;:&quot;Paper&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/paper.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/paper.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="Choose Groups" FormWidth="400" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="334,212" sap2010:WorkflowViewState.IdRef="FormActivity_15" IsReadOnly="False" LocalCSSFilePath="/file://C:\Users\RimelSte\Documents\UiPath\CReST3\form1.css" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" StartAsMinimized="False">
+                  <ufa:FormActivity.Body>
+                    <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,86" sap2010:WorkflowViewState.IdRef="Sequence_77">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </ActivityAction>
+                  </ufa:FormActivity.Body>
+                  <ufa:FormActivity.DelayBody>
+                    <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                      <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_15" />
+                    </ActivityAction>
+                  </ufa:FormActivity.DelayBody>
+                  <ufa:FormActivity.FormFieldsCollection>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="choice" />
+                    <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="choice_selectboxes">
+                      <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_178">listGroup</mca:CSharpReference>
+                    </InOutArgument>
+                  </ufa:FormActivity.FormFieldsCollection>
+                  <ufa:FormActivity.FormFieldsOutputData>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_179">groupOutput</mca:CSharpReference>
+                    </OutArgument>
+                  </ufa:FormActivity.FormFieldsOutputData>
+                </ufa:FormActivity>
+                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_11">
+                  <ui:DeserializeJson.JsonObject>
+                    <OutArgument x:TypeArguments="njl:JObject">
+                      <mca:CSharpReference x:TypeArguments="njl:JObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_156">jsonGroup</mca:CSharpReference>
+                    </OutArgument>
+                  </ui:DeserializeJson.JsonObject>
+                  <ui:DeserializeJson.JsonString>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_280">groupOutput</mca:CSharpValue>
+                    </InArgument>
+                  </ui:DeserializeJson.JsonString>
+                </ui:DeserializeJson>
+                <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_74">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                      <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_157">dictionaryGroup</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                      <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_281" xml:space="preserve">jsonGroup["choice"].ToObject&lt;Dictionary&lt;string, string&gt;&gt;()
+	.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value)</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_75">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:String[]">
+                      <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_158">arrGroup</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:String[]">
+                      <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_282" xml:space="preserve">dictionaryGroup.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value).Keys.ToArray()</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_32">
+                  <ui:LogMessage.Message>
+                    <InArgument x:TypeArguments="x:Object">
+                      <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_283">"arrGroup Fitered:\n "+string.Join(Environment.NewLine, arrGroup)</mca:CSharpValue>
+                    </InArgument>
+                  </ui:LogMessage.Message>
+                </ui:LogMessage>
+              </Sequence>
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="575.333333333333,1691.33333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_22">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:String">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:String" Name="group" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="538.666666666667,1564" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="ienType" />
+                        <Variable x:TypeArguments="s:String[]" Name="arrGroup3DPrinting">
+                          <Variable.Default>
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_324">new string[]{"HP 3D Accessories","HP 3D Automatic Unpacking Station","HP Jet Fusion 3D Printers","HP Jet Fusion 3D Processing Stations"}</mca:CSharpValue>
+                          </Variable.Default>
+                        </Variable>
+                        <Variable x:TypeArguments="s:String[]" Name="arrGroupComputers">
+                          <Variable.Default>
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_325">new string[]{"Commercial Warranty 90d/4y/5y","HP Business Desktop","HP Business Mobility","HP Business Monitor","HP Business Notebook","HP Business Revitalize Notebooks","HP Business VR Products","HP Consumer - Commercial Notebooks","HP Consumer Desktop","HP Consumer Monitor","HP Consumer Notebook","HP Remarketed Business Products","HP Remarketed Business Products - Previous Series","HP ThinClient","HP Workstation","Retail Mobility","Retail Point of Sale"}</mca:CSharpValue>
+                          </Variable.Default>
+                        </Variable>
+                        <Variable x:TypeArguments="s:String[]" Name="arrGroupGraphicsPrinters">
+                          <Variable.Default>
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_286">new string[]{"HP DesignJet", "HP Graphics PageWide Printers", "HP Latex Printers - Gemini A version", "HP Latex Printers - High Volume PL TW", "HP Latex Printers - Low Volume PL ID", "HP Latex Printers - Previous Series", "HP Scitex Flatbed", "LF Industrial"}</mca:CSharpValue>
+                          </Variable.Default>
+                        </Variable>
+                        <Variable x:TypeArguments="s:String[]" Name="arrGroupDigitalImaging">
+                          <Variable.Default>
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_326">new string[]{"Contractual Printing Products","HP Color LaserJet","HP Color LaserJet MFP/AIO","HP DeskJet","HP Fax","HP Ink Tank","HP LaserJet - monochrome","HP LaserJet MFP/AIO - monochrome","HP OfficeJet","HP PageWide Printers","HP Photo Scanner","HP PhotoSmart Printer ","HP Portable Printer","HP ScanJet","HP Sprocket"}</mca:CSharpValue>
+                          </Variable.Default>
+                        </Variable>
+                        <Variable x:TypeArguments="s:String[]" Name="arrGroupSPrinters">
+                          <Variable.Default>
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_327">new string[]{"Copier Color MFP","Copier Mono MFP","Install Base Portfolio","Printer Color MFP","Printer Mono MFP","Printer SF Color","Printer SF Mono"}</mca:CSharpValue>
+                          </Variable.Default>
+                        </Variable>
+                        <Variable x:TypeArguments="s:String[]" Name="arrTypes" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="496.666666666667,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_33">
+                        <ui:LogMessage.Message>
+                          <InArgument x:TypeArguments="x:Object">
+                            <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_289">"Group: "+group</mca:CSharpValue>
+                          </InArgument>
+                        </ui:LogMessage.Message>
+                      </ui:LogMessage>
+                      <Switch x:TypeArguments="x:String" DisplayName="Switch" sap:VirtualizedContainerService.HintSize="496.666666666667,238" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                        <Switch.Default>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_34">
+                            <ui:LogMessage.Message>
+                              <InArgument x:TypeArguments="x:Object">
+                                <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_296">"Invalid Group"</mca:CSharpValue>
+                              </InArgument>
+                            </ui:LogMessage.Message>
+                          </ui:LogMessage>
+                        </Switch.Default>
+                        <Switch.Expression>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_290">group</mca:CSharpValue>
+                          </InArgument>
+                        </Switch.Expression>
+                        <Assign x:Key="HP 3D Printing" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_76">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_159">arrTypes</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_291">arrGroup3DPrinting</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign x:Key="HP Graphics Printers" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_77">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_160">arrTypes</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_292">arrGroupGraphicsPrinters</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign x:Key="Printers &amp; Digital Imaging" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_78">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_161">arrTypes</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_293">arrGroupDigitalImaging</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign x:Key="S-Printers" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_79">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_162">arrTypes</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_294">arrGroupSPrinters</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign x:Key="Computers" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_80">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_163">arrTypes</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_295">arrGroupComputers</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Switch>
+                      <Sequence DisplayName="Type Form Sequence" sap:VirtualizedContainerService.HintSize="496.666666666667,954.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="regionOutput" />
+                          <Variable x:TypeArguments="njl:JObject" Name="jsonRegion" />
+                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictionaryRegion" />
+                          <Variable x:TypeArguments="scg:List(x:String)" Name="typeList" />
+                          <Variable x:TypeArguments="x:String" Name="types" />
+                          <Variable x:TypeArguments="x:String" Name="typeOutput" />
+                          <Variable x:TypeArguments="njl:JObject" Name="jsonType" />
+                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictionaryType" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_81">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_164">header</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_297">"Choose Types In "+group</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_82">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="scg:List(x:String)">
+                              <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_165">typeList</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="scg:List(x:String)">
+                              <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_298">arrTypes.ToList()</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" IconPath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="48920cb3-0815-404a-8531-c9667b71b79e" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form" FormHeight="600" FormSchema="%[{&quot;html&quot;:&quot;&lt;figure class=\&quot;image image-style-align-right image_resized\&quot; style=\&quot;margin-top:-35px;margin-right:-25px;\&quot;&gt;&lt;img src=\&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAVeSURBVGhDzZp5yGZjGMZf+26MZM+esSWyJ2QvWRqMqEHJH7ZQZAnZ/iBZS9YkW9bGoBlrWcouu5ItlEiy7/vvOjxv19xzn+2d95vmql+Z79znPu85z3me57rvYzCB2hjO+58L4FSYBtvCUrBAaB04G46t/jWnboZ/avgAZsFRsAbMd+0M18OvoB90JLiWhi8g/vCMb+BK2AYmXFPgVvAf8CksBq6p4DFd+BOugZVhQnQ86GnFC18FUfdBjOvKZzAdxiZNuFsgu5iIQ78qfAdZbB+yB9Nb68M7kF1AvAhRJ0IWOwrPwAowktaGdyFLXDgJop6ALHZUnoLloZeWg/chS1j4GXSTrk0gi51XnoZemgFZIudJiDoXsthx0HlOnA5Zgkhc+6W2UZtXDoJGbQhlc2pCq8yK4NLmlsWOky9hMtTqEchOjNwIUXdCFjturoZUu0B2Qsbe4Cp7xWMwGx6AZ+F7yM4Xshr3g+Iz5JUehPha/gVx8aikZB5Yx8cQrcPCsMh//znUorA63A1ZnuOgiybBwfADlHMvgTm0AejO/AJ1zHVyB70EnuNb6Lu2Hw3l/K9BNzbU+eAXaGJrcC0Ju8FOsAdsBVGqCTyHDGGUdv3dQa+y8q0ErlXAcxwKQz0PfrCOFyBKnt5jroWou8Bj9gGX7Pcn4DGqNVw7gB+/FyrJfGlI/WAd2iOitNV7zK7gkj3+Ccpx2e9lwbU/eI5HIeoK8JgPYXGohs0P1PELrAsuWQefO6/BQuA6GTyPipeoe8BjVE+4tMrJZnuMrrsZVOWgH6gjeyoXgcecBlHPgcdE+6133VeYz2EZcMURKujvgwvtD00cBi496Wi1NRFdquD+hnL8dYjL7eHgOTLPcxt4TOEEaCy+C19B9OU7gsdoF486CzzmDIh6GDxGk9Wl1edH8JiCHn4nC6BVJErvssccA1E+Qn+ARsSl/ed3KDFvQ5TyluMRud9ONxCXPb2jMlbluDaWaLK0J3iObA5F+91lDjnVDbS9Qlr2ZAtch4DH3AFR2g885ghwaQ69AeW4uhLZCP0GnsepXqG2SayuWlTsOuwJLtkErSbluLoZcQ6pQ+c5VIpGtdUm1SRuW0a3BNdqEDemJcC1L3iObA5dBh4Tu3saoTfBYyIHwGAv+0PkVYhyUyXUjIqKJWnbxqQCSQ/GJW/lOSJanquHuybULVNnQlT0TduDS9bE88l+x7Vf9thz3A5RcQ5FlHc48jJpWVDcmGQdfNl7BaL0XnqOS8GlV0P9JI/ZD1xyuHo1PSai+mUoTdQYoKoqKsZVkyhIzSiP2QJcugG9u9rZhVrucYS0bHuODL3KQ8kUxQANc5RPKk1kVVyu9cBzvAWq1vpqJnieiErVuZrAD0EJ0ASTR3fJJnuSbIQuBo+RlegjLbXRIGakPSJvi2iXlcUtBbaeiD5KeBIV21ptSoxuyF2l7K7aNC6NkAr1x6Gc5+d/BH6NOjaFVEqcnTAKMmlR4+jc3QS12hy0pWcn9kU22aWJKjudxXZFO3rrB5BzIDu5D9qYZINd20EW24fop2oVPXpfMutwHWSxXbkBOkt9z7aNpImq1DPJzcaatg/q8kVH3CoV8O9BlrCJrHN3IGSxXVDXQ98rRtJGoPZFlriOyyEqftnsyssw8iemIrXw6vqbGZqsLpk7t99dkZmr+j7jkpxp27cDVVhR+jybxdahTbTzatNX2ieauthZ10Hft7LYiPYflbdp63zc0vcBNQNiRzv2M2UlmmpaodpBRdF8+V8NovQDTwHVBZonUaoFsh+tJVo1sOz4WrBASD4/Sru6usiqf/V6yV7I1TZ+5+quweBfV7S3n2Ar7I8AAAAASUVORK5CYII=\&quot;&gt;&lt;/figure&gt;&quot;,&quot;label&quot;:&quot;Content&quot;,&quot;customClass&quot;:&quot;styledimg&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;content&quot;,&quot;type&quot;:&quot;content&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false},{&quot;tag&quot;:&quot;h4&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;{{data.header}}&lt;/strong&gt;&quot;,&quot;key&quot;:&quot;region_header&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Choose Regions&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;&lt;strong&gt;Types:&lt;/strong&gt;&quot;,&quot;tooltip&quot;:&quot;ctrl+A to select all&quot;,&quot;customClass&quot;:&quot;text-font&quot;,&quot;tableView&quot;:false,&quot;defaultValue&quot;:{&quot;&lt;font face=&quot;:true,&quot;&quot;:false,&quot;value&quot;:false,&quot;fontFaceFormaDjrDisplayResetFont&quot;:false,&quot;fontFaceFormaDjrDisplayFont&quot;:false,&quot;fontFaceFormaDjrDisplayDatFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoicFont&quot;:false,&quot;fontFaceFormaDjrDisplayDataChoiceFont&quot;:false,&quot;choice&quot;:false},&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;choice&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;minSelectedCount&quot;:1},&quot;minSelectedCountMessage&quot;:&quot;You must select at least one region&quot;,&quot;key&quot;:&quot;choice&quot;,&quot;type&quot;:&quot;selectboxes&quot;,&quot;value&quot;:true,&quot;shortcut&quot;:&quot;A&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;inputType&quot;:&quot;checkbox&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;center&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:2,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;SUBMIT&lt;/strong&gt;&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;saveOnEnter&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;&lt;strong style=\&quot;font-family: 'Forma DJR Display\&quot;&gt;RESET&lt;/strong&gt;&quot;,&quot;action&quot;:&quot;reset&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;size&quot;:&quot;lg&quot;,&quot;block&quot;:true,&quot;tableView&quot;:false,&quot;key&quot;:&quot;resetAll&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;}]}]]}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100200&quot;,&quot;Name&quot;:&quot;Paper&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/paper.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/paper.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormWidth="400" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="334,212" sap2010:WorkflowViewState.IdRef="FormActivity_13" IsReadOnly="False" LocalCSSFilePath="/file://C:\Users\RimelSte\Documents\UiPath\CReST3\form1.css" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" StartAsMinimized="False">
+                          <ufa:FormActivity.Body>
+                            <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,86" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </ActivityAction>
+                          </ufa:FormActivity.Body>
+                          <ufa:FormActivity.DelayBody>
+                            <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                              <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_13" />
+                            </ActivityAction>
+                          </ufa:FormActivity.DelayBody>
+                          <ufa:FormActivity.FormFieldsCollection>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="choice" />
+                            <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="choice_selectboxes">
+                              <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_166">typeList</mca:CSharpReference>
+                            </InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="header">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_167">header</mca:CSharpReference>
+                            </InOutArgument>
+                          </ufa:FormActivity.FormFieldsCollection>
+                          <ufa:FormActivity.FormFieldsOutputData>
+                            <OutArgument x:TypeArguments="x:String">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_168">typeOutput</mca:CSharpReference>
+                            </OutArgument>
+                          </ufa:FormActivity.FormFieldsOutputData>
+                          <ufa:FormActivity.FormTitle>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_299">"Choose Types For "+group</mca:CSharpValue>
+                            </InArgument>
+                          </ufa:FormActivity.FormTitle>
+                        </ufa:FormActivity>
+                        <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_12">
+                          <ui:DeserializeJson.JsonObject>
+                            <OutArgument x:TypeArguments="njl:JObject">
+                              <mca:CSharpReference x:TypeArguments="njl:JObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_169">jsonType</mca:CSharpReference>
+                            </OutArgument>
+                          </ui:DeserializeJson.JsonObject>
+                          <ui:DeserializeJson.JsonString>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_300">typeOutput</mca:CSharpValue>
+                            </InArgument>
+                          </ui:DeserializeJson.JsonString>
+                        </ui:DeserializeJson>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_83">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                              <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_170">dictionaryType</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                              <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_301" xml:space="preserve">jsonType["choice"].ToObject&lt;Dictionary&lt;string, string&gt;&gt;()
+	.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value)</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="334,65.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_84">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_171">arrTypes</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_302" xml:space="preserve">dictionaryType.Where(p =&gt; p.Value == "True")
+         .ToDictionary(p =&gt; p.Key, p =&gt; p.Value).Keys.ToArray()</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_35">
+                          <ui:LogMessage.Message>
+                            <InArgument x:TypeArguments="x:Object">
+                              <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_303">group+": "+string.Join(",", arrTypes)</mca:CSharpValue>
+                            </InArgument>
+                          </ui:LogMessage.Message>
+                        </ui:LogMessage>
+                      </Sequence>
+                      <Assign sap:VirtualizedContainerService.HintSize="496.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_85">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:String[]">
+                            <mca:CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_172">groupTypeDict[group]</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:String[]">
+                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_304">arrTypes</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+                <ui:ForEach.Values>
+                  <InArgument x:TypeArguments="sc:IEnumerable">
+                    <mca:CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_305">arrGroup</mca:CSharpValue>
+                  </InArgument>
+                </ui:ForEach.Values>
+              </ui:ForEach>
+            </Sequence>
+            <Assign sap:VirtualizedContainerService.HintSize="617.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_86">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:Dictionary(x:String, s:String[])">
+                  <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, s:String[])" sap2010:WorkflowViewState.IdRef="CSharpReference`1_173">out_GroupTypeDict</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, s:String[])">
+                  <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:String[])" sap2010:WorkflowViewState.IdRef="CSharpValue`1_306">groupTypeDict</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="617.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_87">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:Dictionary(x:String, s:String[])">
+                  <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, s:String[])" sap2010:WorkflowViewState.IdRef="CSharpReference`1_174">out_RegionCountryDict</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, s:String[])">
+                  <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:String[])" sap2010:WorkflowViewState.IdRef="CSharpValue`1_307">regionCountryDict</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-237, 94, 1386, 1035" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAsESURBVGhD7ZlrcJTVGcf9UAUUNV5AFDEhBMh1s9lNNJCQbDZcEhQI2hn7QaXTduzlS5xxnI61LWov3gpJ0AQIl5AI6OhM02lt6zSXJUASLmqc6dR2OiORkhAumg0BCbC75+n/ec55L9kEiop12vGZ+c//eZ5zds/vnH3fl81y1dfx/xC9AW/CyUB+4MTC3KqTpXc3nyjN6z1ZmhuG04lgrpI8mNeDOgSvOl7qr+DXmJd/dTEQyA1oKANrgI8Hc4l1ogR5iV/qYyXosST3S30s6G/oD/grzNv994LBAdMjkBawAXWAGdKvoRnW1McCxiX3qQHUUO/xgH+VefsvLwYC3iQsHBoN6oKzwRjKJ4BaAmn67Azukzm2ilk5IV7DLHdl40QgrxKLh23ggF9pByDcAtTSgKNAi33qKENKniP50eIcyHKjopzw0QW+x8yyVyaOB3JXaxjnZG0wA2flGkh6IgfOjBUxvIAqiAbEvZKLL/CqfuT9Rd7VZvkvFscDvtUMdswFKbIBXZAMYcHBGU7DoAcwEeZLb4FXz2dg5Ky+OB/4opsYKAI8IKyTjYfWp2eAzSkKrDgg2A0ggxowywV0lAotz7bVX+j5fJs4VuSvtE5LA2o4LX16MsaAFiwLAOOJwWwvzFYCqyGRG+ACjzoCtyR1QTYdLvB8tnuCnwQADDO4G9oCdcOYXE7V6ssYA1huARl3w0mPXWqP5KPdQ/8q8IR781Mv/+kE0B6GEhlgC87O3SeH0zS17hVky0naJ2pA4qDoyPwsJc71fK1RY/Oz0DOalxUyeJcO32v3f/vtB/Od0zNuAdsnGOe8cH9ZIQ3VvEhnd7dT5Gg/2REZJnXqHYp9+AxFe5ZRdH8uxQ74VXS/n2L72X1a+/wYcxSTno9EqOlATrHBvHj4d67sXfWbcg2PE3RDa1ANa4RT8lBfWQGd2rKeYsPDhvjSEevbKFA24P4ceI4GhcdQs3TPkpciXd4egzl+5O5YucK3cyWx6n5Y5Lou3R+t6eEjZg18s2zUaQ+PKHrr/fO09u0ReuL1T+kH287Qmj+fpV3/iJgZJs71U6xnKU7eC1ARRbsBCXEe269rAe/OFo/u86hId2bA4I4N3877mwGvfDtWUuHW5fT3oFdfl3I98jU66ppURx8YDf9a93kKPneK8p4eorzVRq58RfVpqg+dM7MR2ET0vXKAAtAoJpAegY3CJbe0Lwu9i9wL3oaKhJztFWRrR4V6obJIHZ6XRSwGZuk8U9yC51P/fsMZygXk5Yjn8mskeBMHCwCYBXgBZEkd7c508q5MrinWnTlIPeN8Ffc2VVR4t68gL+C9r66QTaBWBxfnADZTNnE4H57P8Jk0tLlOAyAe3XqG/D8fgsLiDGnlY2TGHt162rwa98SROlzfGjDanaFiULQrw651DhmP7Ekdexl5G5dXM3h2EzbB/upyld20nB56frFAf5SfQVqZ1LdyiVmaaEP7CPkAFC+GHa/P4k2w7+gylxOeUrGD+QBNB+R4SsMG03D6aZgD75pbZbCdyG5cEWJgLzbA7mlaprIblxPrD/fnavh7MqgXOvnsU3phxL1rT1HOz8JagLJl9dxj7jnIi349ZF9Kqvc5nLwG1EpFnqpi2rmmSKfxrrnNBtsJT+PyHk/jMnKkN8FaWFuueu9OV733pBP7yLsHZNH2Dy6Q1wCyfx79/r3z8l7qk1aKGsBo51wtgeZ8jtK9OejNUbHOOYcMthOebcvDWduWUda2+8jD3rhMcS69xvvUuu/N403QIch63r/4p08BMUjZP4XgnDOUzhlw/D671ef3kDjXB9g5IgHtnO1yWyqyV3zQYDuR1QBYtxjeVedvXKr+WpChDuWl6wUR390yTB7Asywoq5beOLls1uSsx3acMe9GGnJvCkWgaGcKTl3caJaK7p2FcQi1wXYiE5CO7qXMrZDOVQbE+ZOPFaoPc1PN84+ocsdpGyQrzq08vrZyq/7OZudfb4EUJQM2WcOKG3Um4wnE+UxlsJ0AcDgD0BkNSxXDZ2xZSlKLliqrbinLxvO/TxZ84Y+fUuZTn1DWU4CxFV9DDAu35ma6xp7He0icOwLAmbhEZjIglCR5ZI9V6x57ZG9S2GA7AcjedBeouBH3RcgffLaEzoRaZM3md88JFANp18owih/TvdFz2z4wN/FQtwFMouieJICzEsWjexNVFLnucy9x7Hei9M1LmxkwfXM5idt5uUqDJN+se6GdVbIoPwLn/SJsA9v6iZOnXyJf9NKQvA9H7J+PKw13F0AZll1L92ZgczNUZPcM1DPGfp0AWDXDMmTaJoYtF0/bXKZsh7gf3LRSDZ/XN19T54jA2DJwF1OalWNebdtZeQ+O6IF5OGkNCVgA36mBkUd23yk1u6hjerXBdiK1vrw4tb6MWAK8id2R7jt65d3tZmmiRzadAtjHAqcVn1tyxlbhNVaow2sA7QIU4OkquhuCR3ZPJ+TQHZJT5x0rDLYT3oZAQlp92aC1idRNS1Rq/RKdi4vUXIh7eQ0PUN/wMQHgS4k3kfrkx2MF4Pgez7W/zI0cocFdfIkw3B0MCd1u8tuxCce5F+m4nSiUMP7vqgAMzd24hASSHRJwk1uy6uDOR+xNcLzcepaCLwzSXEBaSsVpW3neM5/Qtr3OZdM3PEBdoRIGNNDs0wA7TUU6pgF2ml0boXfb7wzu2EhdvzAwd8NimrNxsRJY5FJbjr7I1DynZMfDikHc0fK38/Srt87Qw/VD9KOmYcl/+86Ic+oI3vhDbzwokGN1myjaMVVFJZ9qelOJdt829vJxx+wNi0IMaEOz1i/S2rBIzVlv9UzfjK872GTQLh3D507LXH9DhTrcyjfkVAHVkJxPkRw9iuyaotUxhfsU65gy9jtQfKTgU5gNIEiJ12n42esXSo1xbMLUdQtl3Bor2f4Q/bj9JdrX/z4dcV1anLcc6qRf7qkj35YKSsHrnngNf8x33ApYAwlxLb1dt6J2hJ7xWy7vF2zAhDScBkypXSiL2sDcMzWPiZtc980cZ0y538O3oYQ+asHN2XELYG+xfVQeupmiu25WrMium3ns8n5W4UhdX5aUUlc6aC0qHqdZtaUaqrbUlZv6Fd2z3Rqv073qNzMEygDCb1KR0E2ANLkAo5aeeBhPns/2s/vs2tJKXoyBLDgBMj23u5USVzsKCnxRfaEGgwALJQA+AbUWauM32v1YR0KlwfpskVIbXJ38cpAXp1niAkLJDIOaXXL0rdwak3FrjpVDbzTjG2YIcO03sus8dAM+CXHTuwH5jYC/XsVCN3yxX6iTa4JPuwGS15VATj7z5RIH0KpdLpKxIH1ra56Ga2fQ68U1NPLQ9QLMbtWx0OQr838EAFg9k6EcKXFAzqwxvZqAM271bAUwP6AO/wU3aPtkAE6GMzD7ZIq0X2ecxzi/jiJtk582y1+ZSKoJVELhJICwGFLyGpNjAyK7h7wamzL9x5uyGHSMoqPqa9nDF1onfb5r/j9FUlUgCVAhBkusKRZQzt1KrC5WMqZzqQvq5qmP3saN23YtgK9VkbZJyKF241C0fRJOflKIQhO/nP/kcwfAVyVWFfdCJALkXdVFSuCtnu6Lb3oDf121TQTwRBWFOHd8AvdCkZaJF//N88sKfCIVSVXFzXetBTxA2XVexDngi2j+K/k44Qnj6JpwpHXCVwMeH9hIAm9mxpqiqhlrFoQA35O4tijMm3j9zemAvTp8oe3q3mjrNc0XWidUR1q+EaDmi3wl/jr+p+Kqq/4NOEiVCzALf44AAAAASUVORK5CYII=" InformativeScreenshot="b37b882694c96806000456a1547e9301.png" Selector="&lt;html app='chrome.exe' title='HP Services IT CReST - View Country Level Cross Reference' /&gt;" Url="https://hpi-itg-cams-crest.corp.hpicloud.net/crestwebsite/XREF_countryCrossReferenceView.aspx" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
